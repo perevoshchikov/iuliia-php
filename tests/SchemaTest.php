@@ -11,9 +11,9 @@ class SchemaTest extends TestCase
     {
         foreach (Iuliia::SCHEMAS as $schemaId => $file) {
             $engine = Iuliia::engine($schemaId);
-            $definition = Iuliia::definition($schemaId);
+            $schema = $engine->getSchema();
 
-            foreach ($definition->getSamples() as $sample) {
+            foreach ($schema->getSamples() as $sample) {
                 $this->assertEquals(
                     $sample[1],
                     $engine->translate($sample[0]),
