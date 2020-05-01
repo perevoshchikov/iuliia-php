@@ -2,8 +2,6 @@
 
 namespace Anper\Iuliia;
 
-use Anper\Iuliia\Definition\Definition;
-
 /**
  * Class Iuliia
  * @package Anper\Iuliia
@@ -87,18 +85,6 @@ class Iuliia
     public static function engine(int $schema): Engine
     {
         return new Engine(static::schema($schema));
-    }
-
-    /**
-     * @param int $schema
-     *
-     * @return Definition
-     */
-    public static function definition(int $schema): Definition
-    {
-        $filepath = static::resolveFilePath($schema, 'schemas', '.json');
-
-        return Definition::createFromFile($filepath);
     }
 
     /**
