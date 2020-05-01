@@ -12,8 +12,6 @@ require $root
 
 use Anper\Iuliia\Iuliia;
 
-use function Anper\Iuliia\mb_ucfirst;
-
 $buildPath = $root
     . 'build'
     . DIRECTORY_SEPARATOR;
@@ -21,6 +19,18 @@ $buildPath = $root
 $schemasPath = $root
     . 'schemas'
     . DIRECTORY_SEPARATOR;
+
+$mb_ucfirst = function (string $str)
+{
+    if (\mb_strlen($str) < 2) {
+        return \mb_strtoupper($str);
+    }
+
+    $first = \mb_substr($str, 0, 1);
+    $last = \mb_substr($str, 1);
+
+    return \mb_strtoupper($first) . \mb_strtolower($last);
+};
 
 foreach (Iuliia::SCHEMAS as $schemaId => $basename) {
     $content = \file_get_contents($schemasPath . $basename . '.json');
@@ -32,17 +42,17 @@ foreach (Iuliia::SCHEMAS as $schemaId => $basename) {
     $endingMap = $definition['ending_mapping'] ?? [];
 
     foreach ($defaultMap as $key => $value) {
-        $defaultMap[mb_ucfirst($key)] = mb_ucfirst($value);
+        $defaultMap[$mb_ucfirst($key)] = $mb_ucfirst($value);
     }
 
     foreach ($prevMap as $key => $value) {
-        $prevMap[mb_ucfirst($key)] = $value;
-        $prevMap[\mb_strtoupper($key)] = mb_ucfirst($value);
+        $prevMap[$mb_ucfirst($key)] = $value;
+        $prevMap[\mb_strtoupper($key)] = $mb_ucfirst($value);
     }
 
     foreach ($nextMap as $key => $value) {
-        $nextMap[mb_ucfirst($key)] = mb_ucfirst($value);
-        $nextMap[\mb_strtoupper($key)] = mb_ucfirst($value);
+        $nextMap[$mb_ucfirst($key)] = $mb_ucfirst($value);
+        $nextMap[\mb_strtoupper($key)] = $mb_ucfirst($value);
     }
 
     foreach ($endingMap as $key => $value) {
