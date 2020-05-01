@@ -57,23 +57,3 @@ function file_get_contents(string $filename): string
     return $content;
 }
 
-/**
- * @param string $filename
- *
- * @return mixed
- */
-function include_file(string $filename)
-{
-    if (\file_exists($filename) === false || \is_file($filename) === false) {
-        throw new \InvalidArgumentException("File '$filename' not found");
-    }
-
-    $content = @include $filename;
-
-    if (empty($content)) {
-        throw new \RuntimeException("Error read the contents of the file
- '$filename'");
-    }
-
-    return $content;
-}

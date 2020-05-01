@@ -40,7 +40,15 @@ class Schema
      */
     public static function createFromFile(string $filename): self
     {
-        $data = (array) include_file($filename);
+        if (\file_exists($filename) === false || \is_file($filename) === false) {
+            throw new \InvalidArgumentException("File '$filename' not found");
+        }
+
+        $data = @include $filename;
+
+        if (empty($data)) {
+            throw new \RuntimeException("Error read the contents of the file '$filename'");
+        }
 
         return new static(
             new Map($data[0] ?? []),
