@@ -1,0 +1,23 @@
+name: Code style
+on:
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    name: PSR12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Run phpcs
+        uses: docker://oskarstark/phpcs-ga
+        with:
+          args: -p --standard=PSR12 src
