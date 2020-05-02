@@ -40,7 +40,7 @@ $ composer test
 `schemas` folder is the git submodule from [general repository](https://github.com/nalgeon/iuliia). You can add schemes manually and use building to generate code:
 
 ``` bash
-$ php bin/build.php
+$ composer build
 ```
 
 
