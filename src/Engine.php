@@ -55,7 +55,7 @@ class Engine
      */
     protected function strToWords(string $str): array
     {
-        return \array_unique(\str_word_count($str, 1, static::WORD_CHARS));
+        return \array_unique((array) \str_word_count($str, 1, static::WORD_CHARS));
     }
 
     /**
@@ -118,7 +118,7 @@ class Engine
      */
     protected function read(string $word): \Generator
     {
-        $str = \preg_split('//u', $word, -1, PREG_SPLIT_NO_EMPTY);
+        $str = (array) \preg_split('//u', $word, -1, PREG_SPLIT_NO_EMPTY);
 
         for ($i = 0, $max = \count($str); $i < $max; $i++) {
             yield [
