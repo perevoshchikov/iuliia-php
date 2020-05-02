@@ -26,6 +26,8 @@ class Builder
     }
 
     /**
+     * Build schema from original json file.
+     *
      * @param string $schema
      *
      * @return Schema
