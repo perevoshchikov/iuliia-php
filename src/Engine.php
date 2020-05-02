@@ -69,7 +69,7 @@ class Engine
 
         $word = $this->translateEnding($word);
 
-        foreach ($this->letterReader($word) as [$prev, $curr, $next]) {
+        foreach ($this->read($word) as [$prev, $curr, $next]) {
             $letter = $this->schema
                 ->getPrevMap()
                 ->get($prev . $curr, null);
@@ -116,7 +116,7 @@ class Engine
      *
      * @return \Generator
      */
-    protected function letterReader(string $word): \Generator
+    protected function read(string $word): \Generator
     {
         $str = \preg_split('//u', $word, -1, PREG_SPLIT_NO_EMPTY);
 
