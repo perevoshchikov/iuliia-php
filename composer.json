@@ -1,9 +1,14 @@
 {
     "name": "anper/iuliia",
     "type": "library",
-    "description": "",
+    "description": "Transliterate Cyrillic → Latin in every possible way.",
     "keywords": [
-        "iuliia"
+        "iuliia",
+        "cyrillic",
+        "latin",
+        "transliterate",
+        "translit",
+        "translate"
     ],
     "homepage": "https://github.com/perevoshchikov/iuliia-php",
     "license": "MIT",
@@ -15,10 +20,10 @@
     ],
     "require": {
         "php" : "~7.1",
-        "ext-json": "*",
         "ext-mbstring": "*"
     },
     "require-dev": {
+        "ext-json": "*",
         "phpstan/phpstan": "^0.11.0",
         "phpunit/php-code-coverage": "^6.0",
         "phpunit/phpunit": "^7.0",
