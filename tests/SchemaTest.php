@@ -9,7 +9,7 @@ class SchemaTest extends TestCase
 {
     public function testTranslate(): void
     {
-        foreach (Iuliia::SCHEMAS as $schemaId => $file) {
+        foreach (Iuliia::SCHEMAS as $schemaId) {
             $engine = Iuliia::engine($schemaId);
             $schema = $engine->getSchema();
 
@@ -17,7 +17,7 @@ class SchemaTest extends TestCase
                 $this->assertEquals(
                     $sample[1],
                     $engine->translate($sample[0]),
-                    'Not equal strings for schema #' . $schemaId
+                    "Not equal strings for schema '$schemaId'"
                 );
             }
         }
