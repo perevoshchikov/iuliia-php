@@ -25,6 +25,9 @@ $ composer require anper/iuliia
 ``` php
 use Anper\Iuliia\Iuliia;
 
+echo Iuliia::translate('Юлия Щеглова', Iuliia::ICAO_DOC_9303);
+// Iuliia Shcheglova
+
 echo Iuliia::translate('Юлия Щеглова', Iuliia::WIKIPEDIA);
 // Yuliya Shcheglova
 ```
