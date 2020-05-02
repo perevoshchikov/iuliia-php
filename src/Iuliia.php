@@ -94,33 +94,21 @@ class Iuliia
      */
     public static function schema(string $schema): Schema
     {
-        $filepath = static::resolveFilePath($schema, 'build', '.php');
-
-        return Schema::createFromFile($filepath);
-    }
-
-    /**
-     * @param string $schema
-     * @param string $dir
-     * @param string $ext
-     *
-     * @return string
-     */
-    protected static function resolveFilePath(string $schema, string $dir, string $ext): string
-    {
         $schema = \mb_strtolower($schema);
 
         if (\in_array($schema, static::SCHEMAS, true) === false) {
             throw new \InvalidArgumentException("Schema '$schema' not found");
         }
 
-        return __DIR__
+        $filepath = __DIR__
             . DIRECTORY_SEPARATOR
             . '..'
             . DIRECTORY_SEPARATOR
-            . $dir
+            . 'build'
             . DIRECTORY_SEPARATOR
             . $schema
-            . $ext;
+            . '.php';
+
+        return Schema::createFromFile($filepath);
     }
 }
