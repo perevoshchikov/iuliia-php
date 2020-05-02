@@ -1,9 +1,18 @@
-# Anper\Iuliia
+# `Iuliia`
 
 [![Software License][ico-license]](LICENSE.md)
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Build Status][ico-ga]][link-ga]
 
+
+> Transliterate Cyrillic → Latin in every possible way
+
+> This is the port of the incredible js library [iuliia](https://github.com/nalgeon/iuliia-js).
+
+## Why use `Iuliia`
+- [20 transliteration schemas](https://github.com/nalgeon/iuliia) (rule sets), including all main international and Russian standards.
+- Correctly implements not only the base mapping, but all the special rules for letter combinations and word endings (AFAIK, Iuliia is the only library which does so).
+- Simple API and zero third-party dependencies.
 
 ## Install
 
@@ -14,7 +23,10 @@ $ composer require anper/iuliia
 ## Usage
 
 ``` php
-Comming soon...
+use Anper\Iuliia\Iuliia;
+
+echo Iuliia::translate('Юлия Щеглова', Iuliia::WIKIPEDIA);
+// Yuliya Shcheglova
 ```
 
 ## Test
@@ -22,6 +34,15 @@ Comming soon...
 ``` bash
 $ composer test
 ```
+
+## Development
+
+`schemas` folder is the git submodule from [general repository](https://github.com/nalgeon/iuliia). You can add schemes manually and use building to generate code:
+
+``` bash
+$ php bin/build.php
+```
+
 
 ## Contributing
 
