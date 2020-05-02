@@ -22,6 +22,14 @@ class Map
     }
 
     /**
+     * @return array
+     */
+    public function all(): array
+    {
+        return $this->data;
+    }
+
+    /**
      * @param string $key
      * @param string|null $default
      *
