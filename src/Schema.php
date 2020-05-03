@@ -46,9 +46,11 @@ class Schema
 
         $data = @include $filename;
 
-        if (empty($data)) {
+        if (empty($data) || \is_array($data) === false) {
             throw new \RuntimeException("Error read the contents of the file '$filename'");
         }
+
+        $data = \array_values($data);
 
         return new static(
             new Map($data[0] ?? []),
