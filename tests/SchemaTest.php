@@ -2,7 +2,6 @@
 
 namespace Anper\Iuliia\Tests\Schema;
 
-use Anper\Iuliia\Iuliia;
 use Anper\Iuliia\Map;
 use Anper\Iuliia\Schema;
 use PHPUnit\Framework\TestCase;
@@ -65,21 +64,5 @@ class SchemaTest extends TestCase
         $this->assertEquals($data[2], $schema->getNextMap()->all());
         $this->assertEquals($data[3], $schema->getEndingMap()->all());
         $this->assertEquals($data[4], $schema->getSamples());
-    }
-
-    public function testTranslate(): void
-    {
-        foreach (Iuliia::SCHEMAS as $schemaId) {
-            $engine = Iuliia::engine($schemaId);
-            $schema = $engine->getSchema();
-
-            foreach ($schema->getSamples() as $sample) {
-                $this->assertEquals(
-                    $sample[1],
-                    $engine->translate($sample[0]),
-                    "Not equal strings for schema '$schemaId'"
-                );
-            }
-        }
     }
 }
