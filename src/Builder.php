@@ -71,7 +71,7 @@ class Builder
     /**
      * @param string $filename
      *
-     * @return array
+     * @return array<string,mixed>
      */
     protected function load(string $filename): array
     {

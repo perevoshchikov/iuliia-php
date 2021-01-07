@@ -51,7 +51,7 @@ class Engine
     /**
      * @param string $str
      *
-     * @return array
+     * @return array|string[]
      */
     protected function strToWords(string $str): array
     {
@@ -114,7 +114,7 @@ class Engine
     /**
      * @param string $word
      *
-     * @return \Generator
+     * @return \Generator|string[][]
      */
     protected function read(string $word): \Generator
     {
@@ -122,9 +122,9 @@ class Engine
 
         for ($i = 0, $max = \count($str); $i < $max; $i++) {
             yield [
-                $str[$i - 1] ?? '',
-                $str[$i],
-                $str[$i + 1] ?? '',
+                (string) ($str[$i - 1] ?? ''),
+                (string) $str[$i],
+                (string) ($str[$i + 1] ?? ''),
             ];
         }
     }

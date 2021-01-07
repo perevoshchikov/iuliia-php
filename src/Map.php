@@ -9,12 +9,12 @@ namespace Anper\Iuliia;
 class Map
 {
     /**
-     * @var array
+     * @var array<string,string>
      */
     protected $data;
 
     /**
-     * @param array $data
+     * @param array<string,string> $data
      */
     public function __construct(array $data)
     {
@@ -22,7 +22,7 @@ class Map
     }
 
     /**
-     * @return array
+     * @return array<string,string>
      */
     public function all(): array
     {

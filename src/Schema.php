@@ -29,14 +29,14 @@ class Schema
     protected $endingMap;
 
     /**
-     * @var array
+     * @var array|string[][]
      */
     protected $samples;
 
     /**
      * @param string $filename
      *
-     * @return static
+     * @return self
      */
     public static function createFromFile(string $filename): self
     {
@@ -52,7 +52,7 @@ class Schema
 
         $data = \array_values($data);
 
-        return new static(
+        return new self(
             new Map($data[0] ?? []),
             new Map($data[1] ?? []),
             new Map($data[2] ?? []),
@@ -66,7 +66,7 @@ class Schema
      * @param Map $prevMap
      * @param Map $nextMap
      * @param Map $endingMap
-     * @param array $samples
+     * @param array|string[][] $samples
      */
     public function __construct(
         Map $defaultMap,
@@ -115,7 +115,7 @@ class Schema
     }
 
     /**
-     * @return array
+     * @return array|string[][]
      */
     public function getSamples(): array
     {
