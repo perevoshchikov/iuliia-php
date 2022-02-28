@@ -18,14 +18,14 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.0
+          php-version: 8.1
           tools: composer:v2
       - name: Install dependences
         run: composer update --no-ansi --no-interaction --no-progress --prefer-dist
       - name: Show dependences
         run: composer show
       - name: Run phpcs
-        run: vendor/bin/phpcs
+        run: composer check-style
   analysis:
     runs-on: ubuntu-latest
     name: Static analysis
@@ -35,7 +35,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.0
+          php-version: 8.1
           tools: composer:v2
           coverage: xdebug
       - name: Install dependences
@@ -43,7 +43,7 @@ jobs:
       - name: Show dependences
         run: composer show
       - name: Run phpstan
-        run: vendor/bin/phpstan analyse
+        run: composer stan
   tests:
     runs-on: ${{ matrix.operating-system }}
     strategy:
@@ -65,4 +65,4 @@ jobs:
       - name: Show dependences
         run: composer show
       - name: Run phpunit
-        run: vendor/bin/phpunit
+        run: composer test
