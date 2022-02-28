@@ -2,12 +2,12 @@
 
 Contributions are **welcome** and will be fully **credited**.
 
-We accept contributions via Pull Requests on [Github](https://github.com/perevoshchikov/iuliia-php).
+We accept contributions via Pull Requests on [Github](https://github.com/perevoshchikov/laravel-russian-id).
 
 
 ## Pull Requests
 
-- **[PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)** - Check the code style with ``$ composer check-style`` and fix it with ``$ composer fix-style``.
+- **[PSR-12 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-12-extended-coding-style-guide.md)** - Check the code style with ``$ composer check-style`` and fix it with ``$ composer fix-style``.
 
 - **Add tests!** - Your patch won't be accepted if it doesn't have tests.
 
@@ -26,6 +26,7 @@ We accept contributions via Pull Requests on [Github](https://github.com/perevos
 
 ``` bash
 $ composer test
+$ composer stan
 ```
 
 
