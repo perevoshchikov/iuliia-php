@@ -1,0 +1,68 @@
+name: build
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+jobs:
+  cs:
+    runs-on: ubuntu-latest
+    name: Code style
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          tools: composer:v2
+      - name: Install dependences
+        run: composer update --no-ansi --no-interaction --no-progress --prefer-dist
+      - name: Show dependences
+        run: composer show
+      - name: Run phpcs
+        run: vendor/bin/phpcs
+  analysis:
+    runs-on: ubuntu-latest
+    name: Static analysis
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          tools: composer:v2
+          coverage: xdebug
+      - name: Install dependences
+        run: composer update --no-ansi --no-interaction --no-progress --prefer-dist
+      - name: Show dependences
+        run: composer show
+      - name: Run phpstan
+        run: vendor/bin/phpstan analyse
+  tests:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      max-parallel: 15
+      matrix:
+        operating-system: [ ubuntu-latest ]
+        php-versions: [ '7.3', '7.4', '8.0', '8.1' ]
+    name: Unit tests on PHP ${{ matrix.php-versions }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: composer:v2
+      - name: Install dependences
+        run: composer update --no-ansi --no-interaction --no-progress --prefer-dist
+      - name: Show dependences
+        run: composer show
+      - name: Run phpunit
+        run: vendor/bin/phpunit
