@@ -5,4 +5,6 @@
 /.gitattributes              export-ignore
 /.gitignore                  export-ignore
 /phpunit.xml.dist            export-ignore
+/phpunit.leagacy.xml.dist    export-ignore
 /tests                       export-ignore
+/.phpunit.cache              export-ignore
